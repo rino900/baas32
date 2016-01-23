@@ -2,21 +2,21 @@
 
 from setuptools import setup
 
-import base32_crockford
+import baas32
 
 
 setup(
-    name='base32-crockford',
-    version='0.3.0',
-    description=("A Python implementation of Douglas Crockford's "
+    name='baas32',
+    version='0.3.1',
+    description=("An alternative Python implementation of Douglas Crockford's "
                  "base32 encoding scheme"),
-    long_description=base32_crockford.__doc__,
+    long_description=baas32.__doc__,
     license='BSD',
-    author='Jason Bittel',
-    author_email='jason.bittel@gmail.com',
-    url='https://github.com/jbittel/base32-crockford',
-    download_url='https://pypi.python.org/pypi/base32-crockford/',
-    py_modules=['base32_crockford'],
+    author='Bas van den Heuvel',
+    author_email='vdheuvel.bas@gmail.com',
+    url='https://github.com/klaplong/baas32.git',
+    # download_url='https://pypi.python.org/pypi/base32-crockford/',
+    py_modules=['baas32'],
     include_package_data=True,
     classifiers=[
         'Development Status :: 4 - Beta',

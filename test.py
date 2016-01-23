@@ -3,7 +3,7 @@
 
 import unittest
 
-import base32_crockford as b32
+import baas32 as b32
 
 
 class EncodeTests(unittest.TestCase):
@@ -45,7 +45,6 @@ class DecodeTests(unittest.TestCase):
         self.assertEqual(b32.decode('16J', strict=True), 1234)
 
     def test_decode_invalid(self):
-        self.assertRaises(ValueError, b32.decode, 'u')
         self.assertRaises(ValueError, b32.decode, '!')
 
 

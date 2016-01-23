@@ -1,9 +1,11 @@
 """
-base32-crockford
+baas32
 ================
 
 A Python module implementing the alternate base32 encoding as described
 by Douglas Crockford at: http://www.crockford.com/wrmg/base32.html.
+
+In `baas32`, this encoding is slightly altered.
 
 He designed the encoding to:
 
@@ -13,8 +15,9 @@ He designed the encoding to:
    * Be pronounceable
 
 It uses a symbol set of 10 digits and 22 letters, excluding I, L O and
-U. Decoding is not case sensitive, and 'i' and 'l' are converted to '1'
-and 'o' is converted to '0'. Encoding uses only upper-case characters.
+S. Decoding is not case sensitive, and 'i' and 'l' are converted to '1', 'o' is
+converted to '0' and 's' is converted to '5'. Encoding uses only upper-case
+characters.
 
 Hyphens may be present in symbol strings to improve readability, and
 are removed when decoding.
@@ -41,14 +44,14 @@ if PY3:
 else:
     string_types = basestring,
 
-# The encoded symbol space does not include I, L, O or U
-symbols = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
+# The encoded symbol space does not include I, L, O or S
+symbols = '0123456789ABCDEFGHJKMNPQRTUVWXYZ'
 # These five symbols are exclusively for checksum values
 check_symbols = '*~$=U'
 
 encode_symbols = dict((i, ch) for (i, ch) in enumerate(symbols + check_symbols))
 decode_symbols = dict((ch, i) for (i, ch) in enumerate(symbols + check_symbols))
-normalize_symbols = str.maketrans('IiLlOo', '111100')
+normalize_symbols = str.maketrans('IiLlOoSs', '11110055')
 valid_symbols = re.compile('^[%s]+[%s]?$' % (symbols,
                                              re.escape(check_symbols)))
 
@@ -139,6 +142,7 @@ def normalize(symbol_string, strict=False):
        1. Hyphens are removed
        2. 'I', 'i', 'L' or 'l' are converted to '1'
        3. 'O' or 'o' are converted to '0'
+       4. 'S' or 's' are converted to '5'
        4. All characters are converted to uppercase
 
     A TypeError is raised if an invalid string type is provided.
